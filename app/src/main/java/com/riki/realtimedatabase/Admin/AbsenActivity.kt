@@ -1,4 +1,4 @@
-package com.riki.realtimedatabase
+package com.riki.realtimedatabase.Admin
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,6 +11,7 @@ import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.WriterException
 import com.journeyapps.barcodescanner.BarcodeEncoder
+import com.riki.realtimedatabase.R
 import com.riki.realtimedatabase.SharedPreferences.Constants
 import com.riki.realtimedatabase.SharedPreferences.PreferencesHelper
 import java.text.SimpleDateFormat
@@ -25,25 +26,32 @@ class AbsenActivity : AppCompatActivity() {
         setContentView(R.layout.activity_absen)
 
         //WIDGET ID
-        val logoutAdmin : Button = findViewById(R.id.logoutAdmin)
+        val lihatAbsenButton : Button = findViewById(R.id.lihatAbsenButton)
         val tvAdmin : TextView = findViewById(R.id.tvAdmin)
         val tvTimer : TextView = findViewById(R.id.tvTimer)
+        var tvEvent : TextView = findViewById(R.id.tvEvent)
+        var tvJam : TextView = findViewById(R.id.tvJam)
 
+        //GET DATA FROM RECYCLER
+        var titles = intent.getStringExtra("TITLE")
+        var jam = intent.getStringExtra("JAM")
+        tvEvent.text = titles
+        tvJam.text = jam
 
         //Sharedpreferences
         sharedpref = PreferencesHelper(this)
         tvAdmin.text = sharedpref.getDataString(Constants.PREF_USERNAME).toString()
 
-        logoutAdmin.setOnClickListener {
-            sharedpref.clearSession()
-            startActivity((Intent(this, MainActivity::class.java)))
+        //TOMBOL LIHAT ABSEN
+        lihatAbsenButton.setOnClickListener {
+            val intent = (Intent(this, AbsenListActivity::class.java))
+            intent.putExtra("TITLE", titles)
+            this.startActivity(intent)
             finish()
         }
 
-        //GET DATA FROM RECYCLER
-        var titles = intent.getStringExtra("TITLE")
-        var tvEvent : TextView = findViewById(R.id.tvEvent)
-        tvEvent.text = titles
+        //TOMBOL LOGOUT
+
 
         //CHECK TIME EVERY SECONDS
         val timer = Timer()

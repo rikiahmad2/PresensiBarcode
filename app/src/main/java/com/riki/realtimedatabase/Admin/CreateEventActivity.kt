@@ -1,10 +1,11 @@
-package com.riki.realtimedatabase
+package com.riki.realtimedatabase.Admin
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import com.google.firebase.database.FirebaseDatabase
+import com.riki.realtimedatabase.R
 import com.riki.realtimedatabase.SharedPreferences.PreferencesHelper
 
 class CreateEventActivity : AppCompatActivity() {

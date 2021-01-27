@@ -10,11 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import com.google.zxing.integration.android.IntentIntegrator
+import com.riki.realtimedatabase.Admin.AbsenActivity
 import com.riki.realtimedatabase.SharedPreferences.Constants
 import com.riki.realtimedatabase.SharedPreferences.PreferencesHelper
 
@@ -34,6 +30,7 @@ class RecyclerAdapter(private val context: Context, var titles: List<String>, pr
                     Toast.makeText(itemView.context, itemTitle.text.toString(), Toast.LENGTH_SHORT).show()
                     val intent = (Intent(context, AbsenActivity::class.java))
                     intent.putExtra("TITLE", itemTitle.text.toString())
+                    intent.putExtra("JAM", itemDetail.text.toString())
                     context.startActivity(intent)
                     (context as Activity).finish()
                 }

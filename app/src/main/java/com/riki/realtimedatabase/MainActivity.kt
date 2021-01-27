@@ -11,6 +11,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.riki.realtimedatabase.Admin.DashboardAdminActivity
 import com.riki.realtimedatabase.SharedPreferences.Constants
 import com.riki.realtimedatabase.SharedPreferences.PreferencesHelper
 
@@ -98,7 +99,8 @@ class MainActivity : AppCompatActivity() {
 
     //Move Layout level Admin
     private fun moveIntentAdmin(){
-        startActivity(Intent(this,DashboardAdminActivity::class.java))
+        startActivity(Intent(this,
+            DashboardAdminActivity::class.java))
         finish()
     }
 }
