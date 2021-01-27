@@ -1,58 +1,53 @@
 package com.riki.realtimedatabase
 
-import android.R.attr
-import android.app.Activity
 import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.zxing.integration.android.IntentIntegrator
 import com.riki.realtimedatabase.SharedPreferences.Constants
 import com.riki.realtimedatabase.SharedPreferences.PreferencesHelper
+import java.lang.StringBuilder
 
-
-class UserActivity : AppCompatActivity() {
+class DashboardAdminActivity : AppCompatActivity() {
     private lateinit var  sharedpref : PreferencesHelper
     var database = FirebaseDatabase.getInstance().reference
-    lateinit var loginUsername : TextView
     private var titlesList = mutableListOf<String>()
     private var descList = mutableListOf<String>()
     private var imageList = mutableListOf<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_user)
+        setContentView(R.layout.activity_dashboard_admin)
 
-        //WIDGET GET ID
-        val clearButton : Button = findViewById(R.id.clearButton)
-        var loginUsername : TextView = findViewById(R.id.loginUsername)
-        loginUsername = findViewById(R.id.loginUsername)
+        //GET REQUIRED WIDGET
+        val tvUsernameAdmin : TextView = findViewById(R.id.tvUsernameAdmin)
+        val createEventBtn : Button = findViewById(R.id.createEventBtn)
 
-
-        //Sharedpreferences
+        //Sharedpref
         sharedpref = PreferencesHelper(this)
-        loginUsername.text = sharedpref.getDataString(Constants.PREF_USERNAME).toString()
-        var sessionUsername = sharedpref.getDataString(Constants.PREF_USERNAME).toString()
-
-        clearButton.setOnClickListener {
-            sharedpref.clearSession()
-            sharedpref.remove()
-            startActivity((Intent(this, MainActivity::class.java)))
-            finish()
-        }
+        tvUsernameAdmin.text = sharedpref.getDataString(Constants.PREF_USERNAME).toString()
 
         //POST LIST VIEW TO RECYLER
         postToList()
+
+
+        createEventBtn.setOnClickListener {
+            createEventIntent()
+        }
+    }
+
+    //Move Layout level Admin
+    private fun createEventIntent(){
+        startActivity(Intent(this,CreateEventActivity::class.java))
+        finish()
     }
 
     //LIST OF ARRAY
@@ -66,7 +61,6 @@ class UserActivity : AppCompatActivity() {
         rv.adapter = RecyclerAdapter(this,titlesList, descList, imageList)
     }
 
-    //POST LIST VIEW TO RECYLER
     private fun postToList(){
         database.child("Event").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {

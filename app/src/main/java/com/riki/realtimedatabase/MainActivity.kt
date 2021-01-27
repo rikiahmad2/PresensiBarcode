@@ -3,7 +3,6 @@ package com.riki.realtimedatabase
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -14,9 +13,6 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.riki.realtimedatabase.SharedPreferences.Constants
 import com.riki.realtimedatabase.SharedPreferences.PreferencesHelper
-import org.w3c.dom.Text
-import java.io.Console
-
 
 
 class MainActivity : AppCompatActivity() {
@@ -47,10 +43,11 @@ class MainActivity : AppCompatActivity() {
                     if (snapshot.child(username).exists() && snapshot.child(username).child("password").value == password){
                         if(snapshot.child(username).child("level").value == "user") {
                             saveSession(username, password, "user")
-                            moveIntent()
+                            moveIntentUser()
                         }
                         else if(snapshot.child((username)).child("level").value == "admin"){
-                            showToast("HEY KAMU ADMIN YA !!")
+                            saveSession(username, password, "admin")
+                            moveIntentAdmin()
                         }
                     }
                     else {
@@ -72,8 +69,11 @@ class MainActivity : AppCompatActivity() {
     //WHEN APPS STARTED
     override fun onStart() {
         super.onStart()
-        if (sharedpref.getDataBoolean(Constants.PREF_IS_LOGIN)){
-            moveIntent()
+        if (sharedpref.getDataBoolean(Constants.PREF_IS_LOGIN) && sharedpref.getDataString(Constants.PREF_LEVEL).toString() == "admin"){
+            moveIntentAdmin()
+        }
+        else if (sharedpref.getDataBoolean(Constants.PREF_IS_LOGIN) && sharedpref.getDataString(Constants.PREF_LEVEL).toString() == "user"){
+            moveIntentUser()
         }
     }
 
@@ -90,9 +90,15 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
     }
 
-    //Move Layout
-    private fun moveIntent(){
+    //Move Layout level User
+    private fun moveIntentUser(){
         startActivity(Intent(this,UserActivity::class.java))
+        finish()
+    }
+
+    //Move Layout level Admin
+    private fun moveIntentAdmin(){
+        startActivity(Intent(this,DashboardAdminActivity::class.java))
         finish()
     }
 }
