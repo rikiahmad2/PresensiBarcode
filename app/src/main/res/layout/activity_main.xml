@@ -6,23 +6,52 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/tvJudul"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:text="LOGIN"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgLogin"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="32dp"
+        android:src="@drawable/ic_undraw_login_re_4vu2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tvJudul"
+        app:layout_constraintTop_toBottomOf="@+id/tvJudul" />
+
     <EditText
         android:id="@+id/tvUsername"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:paddingLeft="16dp"
+        android:layout_marginTop="50dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Username"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imgLogin" />
 
     <EditText
         android:id="@+id/tvPassword"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:paddingLeft="16dp"
         android:ems="10"
         android:inputType="textPassword"
         android:hint="Password"
@@ -30,27 +59,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvUsername" />
 
+
     <Button
         android:id="@+id/sButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:background="#FFFFFF"
-        android:text="Button"
-        app:backgroundTint="@color/teal_200"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="64dp"
+        android:layout_marginRight="64dp"
+        android:layout_height="50dp"
+        android:background="@drawable/bg_btn"
+        android:text="LOGIN"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPassword" />
 
-    <TextView
-        android:id="@+id/vUsername"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:text="TextView"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sButton" />
+    <!--    <TextView-->
+    <!--        android:id="@+id/vUsername"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="56dp"-->
+    <!--        android:text="TextView"-->
+    <!--        android:textSize="24sp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/sButton" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

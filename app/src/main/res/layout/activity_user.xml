@@ -6,35 +6,61 @@
     android:layout_height="match_parent"
     tools:context=".UserActivity">
 
-    <Button
-        android:id="@+id/clearButton"
+    <LinearLayout
+        android:id="@+id/layout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Clear"
+        android:background="@drawable/bg_btn2"
+        android:backgroundTint="#f7f7f7"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginUsername" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/loginUsername"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="14dp"
+            android:src="@drawable/ic_usericon" />
+
+        <TextView
+            android:id="@+id/loginUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama User" />
+
+        <Button
+            android:id="@+id/clearButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="120dp"
+            android:text="Logout"
+            app:backgroundTint="#FF5252" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_marginTop="24dp"
+        android:layout_height="0.5dp"
+        android:background="@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/layout1" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_recyclerView"
         android:layout_width="wrap_content"
         android:layout_height="490dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clearButton"
+        app:layout_constraintTop_toBottomOf="@+id/layout1"
         tools:itemCount="5"
         tools:listitem="@layout/event_list" />
 

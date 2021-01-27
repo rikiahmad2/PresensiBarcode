@@ -78,7 +78,8 @@ class DashboardAdminActivity : AppCompatActivity() {
             this,
             titlesList,
             descList,
-            imageList
+            imageList,
+                true
         )
     }
 

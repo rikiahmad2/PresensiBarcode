@@ -15,7 +15,7 @@ import com.riki.realtimedatabase.SharedPreferences.Constants
 import com.riki.realtimedatabase.SharedPreferences.PreferencesHelper
 
 
-class RecyclerAdapter(private val context: Context, var titles: List<String>, private var details:List<String>, private var images:List<Int>) :
+class RecyclerAdapter(private val context: Context, var titles: List<String>, private var details:List<String>, private var images:List<Int>, private var bool : Boolean) :
     RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
     private lateinit var  sharedpref : PreferencesHelper
 
@@ -26,7 +26,7 @@ class RecyclerAdapter(private val context: Context, var titles: List<String>, pr
 
         init{
             itemView.setOnClickListener { v : View ->
-                if (sharedpref.getDataString(Constants.PREF_LEVEL).toString() == "admin") {
+                if (sharedpref.getDataString(Constants.PREF_LEVEL).toString() == "admin" && bool == true) {
                     Toast.makeText(itemView.context, itemTitle.text.toString(), Toast.LENGTH_SHORT).show()
                     val intent = (Intent(context, AbsenActivity::class.java))
                     intent.putExtra("TITLE", itemTitle.text.toString())
@@ -40,6 +40,9 @@ class RecyclerAdapter(private val context: Context, var titles: List<String>, pr
                     intent.putExtra("TITLE", itemTitle.text.toString())
                     context.startActivity(intent)
                     (context as Activity).finish()
+                }
+                else{
+
                 }
             }
         }

@@ -25,7 +25,6 @@ class AbsenListActivity : AppCompatActivity() {
 
         //Sharedpreferences
         sharedpref = PreferencesHelper(this)
-
         //POST LIST VIEW TO RECYLER
         postToList()
     }
@@ -42,7 +41,8 @@ class AbsenListActivity : AppCompatActivity() {
             this,
             titlesList,
             descList,
-            imageList
+            imageList,
+                false
         )
     }
 

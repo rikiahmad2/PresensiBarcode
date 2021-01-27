@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         val sButton : Button = findViewById(R.id.sButton)
         val tvPassword : EditText = findViewById(R.id.tvPassword)
         val tvUsername : EditText = findViewById(R.id.tvUsername)
-        val vUsername : TextView = findViewById(R.id.vUsername)
+        val vUsername : TextView = findViewById(R.id.tvUsername)
 
         //LOGIN
         sButton.setOnClickListener {
