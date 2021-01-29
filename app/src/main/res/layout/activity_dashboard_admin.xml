@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:backgroundTint="#F7F7F7"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Admin.DashboardAdminActivity">
@@ -10,7 +11,7 @@
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="230dp"
-        android:background="@color/bg_purple"
+        android:background="@drawable/bg_purple"
         android:backgroundTint="@color/purple"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp" />
@@ -21,7 +22,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/bg_btn2"
-        android:backgroundTint="#f7f7f7"
         android:orientation="horizontal"
         android:gravity="center"
         android:padding="16dp"
@@ -30,19 +30,22 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:layout_marginRight="14dp"
+            android:layout_marginRight="8dp"
             android:src="@drawable/ic_usericon"
             android:layout_width="20dp"
-            android:layout_height="20dp"/>
+            android:layout_height="20dp"
+            tools:ignore="VectorDrawableCompat" />
 
         <TextView
             android:id="@+id/tvUsernameAdmin"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nama User" />
 
         <Button
             android:id="@+id/logoutBtn"
+            android:drawableRight="@drawable/ic_logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="120dp"
@@ -56,16 +59,16 @@
         android:layout_marginRight="32dp"
         android:id="@+id/view2"
         android:layout_width="match_parent"
-        android:layout_marginTop="24dp"
         android:layout_height="0.5dp"
         android:background="@color/white"
-        app:layout_constraintTop_toBottomOf="@+id/layout1" />
+        app:layout_constraintTop_toBottomOf="@+id/layout1"/>
 
     <Button
         android:id="@+id/createEventBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_btn"
+        android:drawableLeft="@drawable/ic_add"
         android:paddingLeft="32dp"
         android:paddingRight="32dp"
         android:layout_marginTop="24dp"
@@ -76,18 +79,53 @@
         app:backgroundTint="#F7F7F7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view2" />
+        app:layout_constraintTop_toBottomOf="@+id/view2">
 
+    </Button>
+
+
+    <View
+        android:id="@+id/view3"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/bg_btn2"
+        android:backgroundTint="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/createEventBtn">
+
+    </View>
+
+    <LinearLayout
+        app:layout_constraintTop_toTopOf="@+id/view3"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="List Event"
+            android:textSize="24sp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/purple"
+            android:textStyle="bold"/>
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="400dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/view3"
         app:layout_constraintVertical_bias="0.496"
         tools:itemCount="5"
         tools:listitem="@layout/event_list" />

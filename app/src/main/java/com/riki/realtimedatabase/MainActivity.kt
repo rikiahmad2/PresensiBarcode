@@ -15,10 +15,10 @@ import com.riki.realtimedatabase.Admin.DashboardAdminActivity
 import com.riki.realtimedatabase.SharedPreferences.Constants
 import com.riki.realtimedatabase.SharedPreferences.PreferencesHelper
 
-
 class MainActivity : AppCompatActivity() {
     private lateinit var  sharedpref : PreferencesHelper
     var database = FirebaseDatabase.getInstance().reference
+    private lateinit var tvRegisterlink : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,8 +30,9 @@ class MainActivity : AppCompatActivity() {
         val tvPassword : EditText = findViewById(R.id.tvPassword)
         val tvUsername : EditText = findViewById(R.id.tvUsername)
         val vUsername : TextView = findViewById(R.id.tvUsername)
+        tvRegisterlink = findViewById(R.id.tvRegisterlink)
 
-        //LOGIN
+        //LOGIN BTN ON CLICK
         sButton.setOnClickListener {
             var username = tvUsername.text.toString()
             var password = tvPassword.text.toString()
@@ -63,6 +64,10 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        // REGISTER TEXTVIEW ON CLICK
+        tvRegisterlink.setOnClickListener{
+            moveIntentRegister()
+        }
 
 
     }
@@ -102,5 +107,10 @@ class MainActivity : AppCompatActivity() {
         startActivity(Intent(this,
             DashboardAdminActivity::class.java))
         finish()
+    }
+
+    //Move Intent TO REGISTER
+    private fun moveIntentRegister(){
+        startActivity(Intent(this,RegisterActivity::class.java))
     }
 }

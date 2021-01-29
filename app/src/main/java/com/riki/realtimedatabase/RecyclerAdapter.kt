@@ -32,14 +32,12 @@ class RecyclerAdapter(private val context: Context, var titles: List<String>, pr
                     intent.putExtra("TITLE", itemTitle.text.toString())
                     intent.putExtra("JAM", itemDetail.text.toString())
                     context.startActivity(intent)
-                    (context as Activity).finish()
                 }
                 else if(sharedpref.getDataString(Constants.PREF_LEVEL).toString() == "user"){
                     Toast.makeText(itemView.context, itemTitle.text.toString(), Toast.LENGTH_SHORT).show()
                     val intent = (Intent(context, UserScanActivity::class.java))
                     intent.putExtra("TITLE", itemTitle.text.toString())
                     context.startActivity(intent)
-                    (context as Activity).finish()
                 }
                 else{
 

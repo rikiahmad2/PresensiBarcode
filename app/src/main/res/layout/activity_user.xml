@@ -6,13 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".UserActivity">
 
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:background="@drawable/bg_purple"
+        android:backgroundTint="@color/purple"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
+
     <LinearLayout
         android:id="@+id/layout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:background="@drawable/bg_btn2"
-        android:backgroundTint="#f7f7f7"
         android:gravity="center"
         android:orientation="horizontal"
         android:padding="16dp"
@@ -23,44 +30,88 @@
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginRight="14dp"
-            android:src="@drawable/ic_usericon" />
+            android:layout_marginRight="8dp"
+            app:srcCompat="@drawable/ic_usericon" />
 
         <TextView
-            android:id="@+id/loginUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="Selamat Datang, " />
+        <TextView
+            android:id="@+id/loginUsername"
+            android:layout_marginRight="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:text="Nama User" />
 
         <Button
             android:id="@+id/clearButton"
-            android:layout_width="wrap_content"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="120dp"
-            android:text="Logout"
-            app:backgroundTint="#FF5252" />
+            android:drawableLeft="@drawable/ic_logout" />
 
     </LinearLayout>
 
     <View
+        android:id="@+id/view3"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
-        android:id="@+id/view2"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/layout1">
+    </View>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="24dp"
-        android:layout_height="0.5dp"
-        android:background="@color/black"
-        app:layout_constraintTop_toBottomOf="@+id/layout1" />
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/view3"
+        app:layout_constraintTop_toTopOf="@+id/view3"
+        >
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginRight="10dp"
+            app:srcCompat="@drawable/ic_calendar" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="List Event"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imgview2"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_marginBottom="12dp"
+        android:layout_marginTop="32dp"
+        app:srcCompat="@drawable/ic_event"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view3" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_recyclerView"
-        android:layout_width="wrap_content"
-        android:layout_height="490dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginRight="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout1"
+        app:layout_constraintTop_toBottomOf="@+id/imgview2"
+        app:layout_constraintVertical_bias="0.237"
         tools:itemCount="5"
         tools:listitem="@layout/event_list" />
 

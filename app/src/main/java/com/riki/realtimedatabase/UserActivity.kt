@@ -74,7 +74,7 @@ class UserActivity : AppCompatActivity() {
                     var myString = i.key.toString()
                     var jamMasuk = i.child("JamMasuk").getValue().toString()
                     var jamKeluar = i.child("JamKeluar").getValue().toString()
-                    addToList(myString, jamMasuk +" - "+ jamKeluar, R.mipmap.ic_launcher_round)
+                    addToList(myString, jamMasuk +" - "+ jamKeluar, R.drawable.ic_easter)
                 }
             }
 

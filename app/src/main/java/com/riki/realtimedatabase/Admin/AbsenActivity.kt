@@ -20,6 +20,7 @@ import java.util.*
 class AbsenActivity : AppCompatActivity() {
     private lateinit var  sharedpref : PreferencesHelper
     var database = FirebaseDatabase.getInstance().reference
+    private lateinit var  barcodeImage : ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +32,7 @@ class AbsenActivity : AppCompatActivity() {
         val tvTimer : TextView = findViewById(R.id.tvTimer)
         var tvEvent : TextView = findViewById(R.id.tvEvent)
         var tvJam : TextView = findViewById(R.id.tvJam)
+        barcodeImage= findViewById(R.id.barcodeImage)
 
         //GET DATA FROM RECYCLER
         var titles = intent.getStringExtra("TITLE")
@@ -47,7 +49,6 @@ class AbsenActivity : AppCompatActivity() {
             val intent = (Intent(this, AbsenListActivity::class.java))
             intent.putExtra("TITLE", titles)
             this.startActivity(intent)
-            finish()
         }
 
         //TOMBOL LOGOUT
@@ -63,7 +64,7 @@ class AbsenActivity : AppCompatActivity() {
                     generateQrCode(tvTimer.text.toString())
                 }
             }
-        }, 0, 1000)
+        }, 2000, 1000)
 
 
 
@@ -71,7 +72,6 @@ class AbsenActivity : AppCompatActivity() {
 
     //GENERATE QR CODE
     private fun generateQrCode(data : String){
-        val barcodeImage : ImageView = findViewById(R.id.barcodeImage)
         val multiFormatWriter = MultiFormatWriter()
         try{
             val bitMatrix = multiFormatWriter.encode(data, BarcodeFormat.QR_CODE, 300, 300)
@@ -90,5 +90,10 @@ class AbsenActivity : AppCompatActivity() {
         runOnUiThread {
             tvTimer.text = "${SimpleDateFormat("HH:mm").format(Date())}"
         }
+    }
+
+    override fun onBackPressed() {
+        finish()
+        super.onBackPressed()
     }
 }

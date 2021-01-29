@@ -20,10 +20,9 @@
         <ImageView
             android:id="@+id/iv_image"
             android:layout_width="80dp"
-            android:layout_height="100dp"
+            android:layout_height="80dp"
             android:layout_centerVertical="true"
-            android:layout_margin="10dp"
-            android:src="@mipmap/ic_launcher"/>
+            app:srcCompat="@drawable/ic_easter"/>
 
         <LinearLayout
             android:layout_width="match_parent"

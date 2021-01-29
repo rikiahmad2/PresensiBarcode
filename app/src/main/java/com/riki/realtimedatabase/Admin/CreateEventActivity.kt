@@ -1,14 +1,17 @@
 package com.riki.realtimedatabase.Admin
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import com.google.firebase.database.FirebaseDatabase
 import com.riki.realtimedatabase.R
 import com.riki.realtimedatabase.SharedPreferences.PreferencesHelper
 
-class CreateEventActivity : AppCompatActivity() {
+class CreateEventActivity : AppCompatActivity(){
 
     private lateinit var  sharedpref : PreferencesHelper
     var database = FirebaseDatabase.getInstance().reference
@@ -20,6 +23,7 @@ class CreateEventActivity : AppCompatActivity() {
         //Sharedpref
         sharedpref = PreferencesHelper(this)
 
+        //GET WIDGET
         val namaEvent : EditText = findViewById(R.id.namaEvent)
         val jamMasuk : EditText = findViewById(R.id.jamMasuk)
         val jamKeluar : EditText = findViewById(R.id.jamKeluar)
@@ -38,5 +42,10 @@ class CreateEventActivity : AppCompatActivity() {
 
             }
         }
+    }
+
+    override fun onBackPressed() {
+        finish()
+        super.onBackPressed()
     }
 }

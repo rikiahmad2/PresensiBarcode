@@ -6,7 +6,9 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -15,12 +17,13 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.zxing.integration.android.IntentIntegrator
+import com.riki.realtimedatabase.Admin.DashboardAdminActivity
 import com.riki.realtimedatabase.SharedPreferences.Constants
 import com.riki.realtimedatabase.SharedPreferences.PreferencesHelper
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-class UserScanActivity : AppCompatActivity() {
+class UserScanActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var  sharedpref : PreferencesHelper
     var database = FirebaseDatabase.getInstance().reference
     lateinit var tvTitleEvent : TextView
@@ -36,6 +39,9 @@ class UserScanActivity : AppCompatActivity() {
         tvTitleEvent.text = intent.getStringExtra("TITLE")
         namaEvent =  tvTitleEvent.text.toString()
 
+        val backBtn : ImageView = findViewById(R.id.backBtn)
+        backBtn.setOnClickListener(this)
+        
         //Sharedpreferences
         sharedpref = PreferencesHelper(this)
 
@@ -44,6 +50,15 @@ class UserScanActivity : AppCompatActivity() {
             val scanner = IntentIntegrator(this)
             scanner.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)
             scanner.initiateScan()
+        }
+    }
+
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.backBtn -> {
+                val moveIntent = Intent(this@UserScanActivity, UserActivity::class.java)
+                startActivity(moveIntent)
+            }
         }
     }
 
@@ -80,5 +95,10 @@ class UserScanActivity : AppCompatActivity() {
     private fun userDashboardIntent(){
         startActivity(Intent(this,UserActivity::class.java))
         finish()
+    }
+
+    override fun onBackPressed() {
+        finish()
+        super.onBackPressed()
     }
 }

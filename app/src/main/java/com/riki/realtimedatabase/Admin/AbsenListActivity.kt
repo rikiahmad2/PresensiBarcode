@@ -55,7 +55,7 @@ class AbsenListActivity : AppCompatActivity() {
                     var myString = i.key.toString()
                     var jam = i.getValue().toString()
                     addToList(myString, jam,
-                        R.mipmap.ic_launcher_round
+                        R.drawable.ic_easter
                     )
                 }
             }
@@ -65,5 +65,10 @@ class AbsenListActivity : AppCompatActivity() {
             }
         })
 
+    }
+
+    override fun onBackPressed() {
+        finish()
+        super.onBackPressed()
     }
 }
